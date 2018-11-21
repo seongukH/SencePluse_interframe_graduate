@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="org.zerock.mapper.AirMapper">
+	<select id="getTime" resultType="string">
+	select now()
+	</select>
+	
+	<insert id="create">
+	insert into air (uhome, temp, humid, dust
+	 )values
+	(#{uhome},#{temp},#{humid},#{dust})
+	</insert>
+	
+	
+    <select id = "listAll" resultType="org.zerock.domain.AirVO">
+    	SELECT
+    		*
+    	
+    	 FROM air
+    	 
+    	
+    	 
+    </select>
+    
+
+    
+    <select id = "read" resultType="org.zerock.domain.AirVO">
+    	SELECT
+    		*
+    	
+    	 FROM air
+    	 
+    	 WHERE uhome LIKE #{uhome}
+    	
+    	 
+    </select>
+    
+    
+    
+    <delete id="delete">
+    	delete
+    		from air
+    	where
+    		uid = #{uid}
+    </delete>
+    
+      
+    
+	
+	</mapper>
+
+

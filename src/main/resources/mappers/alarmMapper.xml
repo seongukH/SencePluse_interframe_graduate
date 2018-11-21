@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="org.zerock.mapper.AlarmMapper">
+	<select id="getTime" resultType="string">
+	select now()
+	</select>
+	
+	<insert id="create">
+	insert into alarm (sname, rutine, alert, uhome, hour, minute)
+	values
+	(#{sname},#{rutine},#{alert},#{uhome}, #{hour}, #{minute})
+	</insert>
+	
+	
+    <select id = "listAll" resultType="org.zerock.domain.AlarmVO">
+    	SELECT
+    		*
+    	
+    	 FROM air
+    	 
+    	
+    	 
+    </select>
+    
+
+    
+    <select id = "read" resultType="org.zerock.domain.AlarmVO">
+    	SELECT
+    		*
+    	
+    	 FROM alarm
+    	 
+    	 WHERE uhome LIKE #{uhome}
+    	order by hour, minute
+    	 
+    </select>
+    
+    
+    
+    <delete id="delete">
+    	delete
+    		from alarm
+    	where
+    		sno = #{sno}
+    </delete>
+    
+      <update id="updateStartAlarm">
+		update alarm set alert=1
+		where hour LIKE #{hour} and minute LIKE #{minute}
+	</update>
+	
+	<update id="updateEndAlarm">
+		update alarm set alert=-1
+		where hour NOT LIKE #{hour} or minute NOT LIKE #{minute}
+	</update>
+	
+    
+	
+	</mapper>
+
+
